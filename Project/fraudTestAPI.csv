@@ -1,0 +1,2 @@
+,trans_date_trans_time,cc_num,merchant,category,amt,first,last,gender,street,city,state,zip,lat,long,city_pop,job,dob,trans_num,merch_lat,merch_long,is_fraud
+0,2022-09-22 13:29:16.789,3540210836308425,fraud_Turner LLC,travel,582.78,Steven,Yoder,M,94975 David Mews Apt. 316,Summerfield,TX,79085,34.7437,-102.5064,53,Fisheries officer,1992-06-19,aeee75e8dce7a4886b684bdc02575f0e,35.57008,-102.138397,0
