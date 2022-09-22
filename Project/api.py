@@ -20,17 +20,14 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import( OneHotEncoder, StandardScaler, LabelEncoder )
 import joblib
 import os
-
-import Fraud_predict
+import sys
+from Model_fraud_detection import Fraud_predict
 
 app = FastAPI()
 
-
-
-
 @app.get("/")
 def start_prediction():
-    print(type(Fraud_predict.predict.main))
+    print("Hello")
     return {"message": 0}
 
 try:

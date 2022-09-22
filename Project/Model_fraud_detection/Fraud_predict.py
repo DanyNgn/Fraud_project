@@ -98,7 +98,7 @@ path = os.path.dirname(__file__)
 ## This dataset is a formated dataset EDA for training model 
 dataset_original = pd.read_csv(path+'/formatedDataset.csv')
 ## This is the new dataset we want to guess the result 
-dataset_from_api = pd.read_csv(path+"/fraudTestAPI.csv", index_col=0, parse_dates=[1])# <---- Consumer envoie le dataset ici. 
+dataset_from_api = pd.read_csv(path+"/../fraudTestAPI.csv", index_col=0, parse_dates=[1])# <---- Consumer envoie le dataset ici. 
 ## We apply the same transformations than the first dataset 
 dataset_from_api = processusDataset(dataset_from_api)
 
