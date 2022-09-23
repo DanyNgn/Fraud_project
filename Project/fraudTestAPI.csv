@@ -1,2 +1,2 @@
 ,trans_date_trans_time,cc_num,merchant,category,amt,first,last,gender,street,city,state,zip,lat,long,city_pop,job,dob,trans_num,merch_lat,merch_long,is_fraud
-0,2022-09-22 14:58:31.797,3564839259330465,fraud_Quitzon-Goyette,home,358.63,Robert,Ashley,M,1250 Christopher Prairie Suite 016,Port Costa,CA,94569,38.046,-122.1866,198,Armed forces training and education officer,1959-03-31,c088a6b4119a9c284fa57913c0af9b74,38.446616,-123.18218,0
+0,2022-09-23 08:25:01.802,4328928491302401,fraud_Wilkinson LLC,personal_care,29.14,Margaret,Ray,F,927 Cummings Manor Suite 318,Greendale,WI,53129,42.9373,-87.9943,13973,Logistics and distribution manager,1981-05-06,fa40baa2d36572f1a0b5b86fa821ae13,42.942029,-87.188388,0

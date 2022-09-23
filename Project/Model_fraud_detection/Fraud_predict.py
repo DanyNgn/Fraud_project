@@ -6,6 +6,7 @@
 
 # Import of librairies
 
+from asyncio.log import logger
 from geopy.distance import geodesic
 import pandas as pd
 import numpy as np # Not always necessary
@@ -21,6 +22,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.impute import SimpleImputer
 from sklearn.tree import plot_tree
+from fastapi import FastAPI, File, UploadFile
+import requests
 
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import( OneHotEncoder, StandardScaler, LabelEncoder )
@@ -30,6 +33,8 @@ import os
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #         definitions          #
 #______________________________#
+
+app = FastAPI()
 
 def preprocessorPipeline(X):
     numeric_features = X.select_dtypes([np.number]).columns 
@@ -92,32 +97,38 @@ def processusDataset(df_fraud_detection):
 #        Execution Code        #
 #______________________________#
 
-path = os.path.dirname(__file__)
+@app.get("/file")
+def main():
+
+    path = os.path.dirname(__file__)
+    ## This dataset is a formated dataset EDA for training model 
+    dataset_original = pd.read_csv(path+'/formatedDataset.csv')
+    ## This is the new dataset we want to guess the result 
+    dataset_from_api = pd.read_csv(path+"/../fraudTestAPI.csv", index_col=0, parse_dates=[1])# <---- Consumer envoie le dataset ici. 
+    ## We apply the same transformations than the first dataset 
+    dataset_from_api = processusDataset(dataset_from_api)
 
 
-## This dataset is a formated dataset EDA for training model 
-dataset_original = pd.read_csv(path+'/formatedDataset.csv')
-## This is the new dataset we want to guess the result 
-dataset_from_api = pd.read_csv(path+"/../fraudTestAPI.csv", index_col=0, parse_dates=[1])# <---- Consumer envoie le dataset ici. 
-## We apply the same transformations than the first dataset 
-dataset_from_api = processusDataset(dataset_from_api)
+    # The target colum name 
+    target_name = "is_fraud"
+    # create the preprocessor form the originals columns 
+    preprocessor = preprocessorPipeline(dataset_original.drop(columns= [target_name]))
+    # Split the dataset_from_api before guess the target with the model 
+    # Y = dataset_from_api[:][target_name] # The Y is just a verif here
+    X = dataset_from_api.drop(columns= [target_name])
+    X_numpy = preprocessor.transform(X)
 
+    ## This is the model train on this dataset (This is a LogisticRegression)
+    model = joblib.load(path+"/model.joblib")
+    ## Prediction
+    Y = model.predict(X_numpy) # Prédictions on test set 
 
-# The target colum name 
-target_name = "is_fraud"
-# create the preprocessor form the originals columns 
-preprocessor = preprocessorPipeline(dataset_original.drop(columns= [target_name]))
-# Split the dataset_from_api before guess the target with the model 
-# Y = dataset_from_api[:][target_name] # The Y is just a verif here
-X = dataset_from_api.drop(columns= [target_name])
-X_numpy = preprocessor.transform(X)
+    finalDataset = X
+    finalDataset['is_fraud'] = Y
 
-## This is the model train on this dataset (This is a LogisticRegression)
-model = joblib.load(path+"/model.joblib")
-## Prediction
-Y = model.predict(X_numpy) # Prédictions on test set 
-
-finalDataset = X
-finalDataset['is_fraud'] = Y
-
-print(finalDataset)
+    print(finalDataset.to_dict())
+    return(finalDataset.to_dict())
+try:
+    main()
+except:
+    logger.error("An error happens with api server")

@@ -8,13 +8,13 @@ import time
 
 # Initialize configurations from "python.config" file
 CONF = ccloud_lib.read_ccloud_config("python.config")
-TOPIC = "my_third_topic" 
+TOPIC = "my_fraud_detection_topic" 
 
 # Create Consumer instance
 # 'auto.offset.reset=earliest' to start reading from the beginning of the
 # topic if no committed offsets exist
 consumer_conf = ccloud_lib.pop_schema_registry_params_from_config(CONF)
-consumer_conf['group.id'] = 'Tesla stock'
+consumer_conf['group.id'] = 'fraud_prediction_consumer'
 consumer_conf['auto.offset.reset'] = 'earliest' # This means that you will consume latest messages that your script haven't consumed yet!
 consumer = Consumer(consumer_conf)
 
@@ -40,9 +40,8 @@ try:
             record_value = msg.value()
             data = json.loads(record_value)
             print(record_key, record_value)
-            time.sleep(0.5) # Wait half a second
+            time.sleep(3) # Wait half a second
         
-        time = 10
 except KeyboardInterrupt:
     pass
 finally:
