@@ -103,8 +103,10 @@ def main():
     path = os.path.dirname(__file__)
     ## This dataset is a formated dataset EDA for training model 
     dataset_original = pd.read_csv(path+'/formatedDataset.csv')
-    ## This is the new dataset we want to guess the result 
+
+    ## This is the new dataset we want to guess the result. We got it into procuer_fraudtest.py
     dataset_from_api = pd.read_csv(path+"/../fraudTestAPI.csv", index_col=0, parse_dates=[1])# <---- Consumer envoie le dataset ici. 
+    
     ## We apply the same transformations than the first dataset 
     dataset_from_api = processusDataset(dataset_from_api)
 
@@ -126,7 +128,6 @@ def main():
     finalDataset = X
     finalDataset['is_fraud'] = Y
 
-    print(finalDataset.to_dict())
     return(finalDataset.to_dict())
 try:
     main()
