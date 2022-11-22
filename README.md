@@ -15,6 +15,11 @@ The goal as a team of Machine Learning Engineers is to:
 
 - Automatically classify each payment and send back this prediction in real-time to a notification center 
 
+Données sensibles
+====================
+Information of python.config file is sensitive and need to be completed with your own API key downloadable from your Confluent account
+Open python.config file and replace {{ CLUSTER_API_KEY }} and {{ CLUSTER_API_SECRET }} by your public and secret API keys
+
 
 How to Install and Run the Project
 ====================================
@@ -33,17 +38,15 @@ How to Install and Run the Project
 
 5) Create API keys in your Confluent account
 
-6) Open python.config file and replace {{ CLUSTER_API_KEY }} and {{ CLUSTER_API_SECRET }} by your public and secret keys previously created
-
-7) On a second terminal, run the producer with this following command to produce transaction datas from the Jedha API:
+6) On a second terminal, run the producer with this following command to produce transaction datas from the Jedha API:
 
 <pre><code>python .\producer_fraudtest.py</code></pre>
 
-8) On a third terminal, run the consumer to use datas from topic:
+7) On a third terminal, run the consumer to use datas from topic:
 
 <pre><code>python .\consumer_fraudtest.py</code></pre>
 
-10) Create a bucket at Amazon and save the API keys from your account
+8) Create a bucket at Amazon and save the API keys from your account
 
 9) Open Confluent and go to Data Integration -> Connectors and choose "S3 Sink connector"
 
@@ -53,8 +56,7 @@ How to Install and Run the Project
 
 Extra:
 
-12) 
-Sign up to Zapier Application and connect it to S3 bucket to see notification sent to an email if a fraud is detected
+12) Sign up to Zapier Application and connect it to S3 bucket to see notification sent to an email if a fraud is detected
 
 How the architecture looks like:
 ![image](https://user-images.githubusercontent.com/6365217/203176444-2268d00e-61ad-4725-a9ee-86cc56fe72ca.png)
