@@ -54,9 +54,7 @@ How to Install and Run the Project
 
 11) We can see that datas are sent to S3 bucket during the consuming in real time
 
-Extra:
-
-12) Sign up to Zapier Application and connect it to S3 bucket to see notification sent to an email if a fraud is detected
+12) Sign up to Zapier Application and configure it to allow a connection and a stream from S3 bucket to an email box to see notifications sent and data consumed
 
 How the architecture looks like:
 ![image](https://user-images.githubusercontent.com/6365217/203176444-2268d00e-61ad-4725-a9ee-86cc56fe72ca.png)
