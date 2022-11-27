@@ -15,10 +15,12 @@ The goal as a team of Machine Learning Engineers is to:
 
 - Automatically classify each payment and send back this prediction in real-time to a notification center 
 
-Données sensibles
+Sensitive datas
 ====================
-Information of python.config file is sensitive and need to be completed with your own API key downloadable from your Confluent account
+- Information of python.config file is sensitive and need to be completed with your own API key downloadable from your Confluent account
 Open python.config file and replace {{ CLUSTER_API_KEY }} and {{ CLUSTER_API_SECRET }} by your public and secret API keys
+
+- You need to get API keys from your created bucket and set it to Zapier to allow the stream between S3 and email box
 
 
 How to Install and Run the Project
@@ -52,7 +54,7 @@ How to Install and Run the Project
 
 10) Choose your Fraud topic previously created in producer_fraudtest.py and connect your S3 bucket with your API keys
 
-11) We can see that datas are sent to S3 bucket during the consuming in real time
+11) We can see that datas are sent to S3 bucket during the consuming in real time and if each transaction is a fraud or not
 
 12) Sign up to Zapier Application and configure it to allow a connection and a stream from S3 bucket to an email box to see notifications sent and data consumed
 
