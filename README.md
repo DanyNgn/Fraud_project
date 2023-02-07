@@ -1,3 +1,5 @@
+Lien présentation vidéo : https://share.vidyard.com/watch/iv6GoUVJ5JSVmHm9FTm2wV?
+
 Automatic Fraud Detection Project
 ==================================
 
@@ -66,4 +68,4 @@ How the architecture looks like:
 
 Credit:
 ===========================================
-Team project: Edouard, Linda, Dany, Samba
+Team project: Edouard, Linda, Dany
